@@ -40,6 +40,7 @@ function pixelateImage(imageSrc, pixelationFactor, setImageSrc) {
 export default function Game() {
   const [pixelation, setPixelation] = useState(1);
   const [imageSrc, setImageSrc] = useState("/src/img/demo.png");
+  const [count, setCount] = useState(0)
 
   useEffect(() => {
     pixelateImage("/src/img/demo.png", pixelation, setImageSrc);
@@ -65,6 +66,9 @@ export default function Game() {
           onChange={(e) => setPixelation(parseInt(e.target.value))}
         />
       </div>
+      <button onClick={() => setCount((count) => count + 1)}>
+        count is {count}
+      </button>
     </>
   );
 }

@@ -1,11 +1,13 @@
 header {
     // background-image: linear-gradient(rgba(32, 32, 32, .8) 60%, rgba(32, 32, 32, 0) 95%);
     background: @background-color;
-    padding: 15px @main-padding;
-    box-shadow: 0 0 10px rgba(255, 0, 0, 0.1);
+    background: linear-gradient(darken(@background-color, 5%), @background-color);
+    padding: 10px @main-grid-padding;
     position: fixed;
     top: 0;
     width: 100%;
+    transition: padding .3s ease;
+    z-index: 100;
 
     nav {
         ul {
@@ -17,6 +19,20 @@ header {
                 margin: 0 10px;
                 font-size: large;
                 font-weight: 500;
+            }
+        }
+    }
+}
+
+body.scrolled header {
+    background: darken(@background-color, 5%);
+    box-shadow: 0 0 10px darken(@background-color, 5%);
+    padding: 5px @main-grid-padding;
+
+    nav {
+        ul {
+            li {
+                font-size: medium;
             }
         }
     }

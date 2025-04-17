@@ -1,0 +1,67 @@
+.home {
+    #intro {
+        >div {
+            width: 50%;
+        }
+    }
+
+    #prompter {
+        background: darken(@background-color, 5%);
+        display: flex;
+        padding: 15px 0;
+        white-space: nowrap;
+        position: relative;
+
+        &::before,
+        &::after {
+            content: "";
+            position: absolute;
+            display: block;
+            width: 100vw;
+            height: 6px;
+            background: darken(@background-color, 5%);
+        }
+
+        &::before {
+            top: -10px;
+        }
+
+        &::after {
+            bottom: -10px;
+        }
+
+        &:hover ul {
+            animation-play-state: paused;
+            transition: all .3s ease;
+            text-shadow: 0 0 4px @primary-color;
+        }
+
+        ul {
+            color: @primary-color;
+
+            animation: scroll 20s linear infinite;
+
+            li {
+                font-size: 3rem;
+                display: inline-block;
+                margin-right: 10px;
+
+                &::after {
+                    content: " - ";
+                }
+            }
+        }
+
+        @keyframes scroll {
+            0% {
+                transform: translateX(0);
+            }
+
+            100% {
+                transform: translateX(-100%);
+            }
+        }
+    }
+
+    #browse {}
+}

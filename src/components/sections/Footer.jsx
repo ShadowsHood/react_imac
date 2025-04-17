@@ -1,11 +1,11 @@
-//create a  footer component
 import React from 'react';
-// import './footer.css';
 
 const Footer = () => {
     return (
         <footer>
-            <p>C fini !</p>
+            <div className="container">
+                <span>All rights reserved - PicksHell - Elvin KAUFFMANN 2025</span>
+            </div>
         </footer>
     );
 };

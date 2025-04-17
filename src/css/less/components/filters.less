@@ -1,0 +1,98 @@
+#filters {
+    background-color: darken(@background-color, 5%);
+
+    h2 {
+        font-family: @special-font;
+        font-weight: normal;
+        font-size: 2.5rem;
+        padding: 5px 15px;
+        text-align: center;
+        color: @primary-color;
+    }
+
+    label {
+        display: block;
+    }
+
+    .filter-group {
+        padding: 15px;
+        border-top: 2px solid lighten(@background-color, 10%);
+        position: relative;
+
+        &:hover {
+            background-color: lighten(@background-color, 5%);
+            transition: all ease 0.3s;
+        }
+
+        &::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0px;
+            height: 100%;
+            background-color: @primary-color;
+        }
+
+        &:hover::before {
+            width: 5px;
+            transition: all ease 0.2s;
+        }
+
+        >label {
+            margin-bottom: 5px;
+            color: lighten(@background-color, 30%);
+            font-weight: 500;
+            text-transform: uppercase;
+
+            &::before {
+                content: "> ";
+            }
+        }
+    }
+
+    input[type="text"] {
+        width: 100%;
+        padding: 5px 10px;
+        border-radius: 3px;
+        border: 2px solid lighten(@background-color, 10%);
+        background-color: lighten(@background-color, 5%);
+        color: @primary-color;
+        font-family: @main-font;
+        font-size: 14px;
+        box-sizing: border-box;
+        transition: all ease 0.3s;
+
+        &:focus {
+            outline: none;
+            border-color: @primary-color;
+            box-shadow: @primary-color 0px 0px 15px;
+        }
+    }
+
+    .checkbox-label {
+        display: flex;
+        align-items: center;
+        font-size: 14px;
+        cursor: pointer;
+
+        span {
+            margin: 0 -15px;
+            width: calc(100% + 50px);
+            padding: 5px 15px;
+        }
+
+
+        input[type="checkbox"] {
+            margin-left: -15px;
+            visibility: hidden;
+
+            &:checked~* {
+                background-color: @primary-color;
+                transition: all ease 0.3s;
+            }
+        }
+    }
+
+
+}

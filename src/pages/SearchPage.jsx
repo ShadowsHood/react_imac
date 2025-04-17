@@ -10,7 +10,6 @@ export default function Search() {
   const [query, setQuery] = useState({
     search: '',
     page: 1,
-    metacritic: 0,
     ordering: '-added',
     platforms: [],
     genres: [],
@@ -56,34 +55,36 @@ export default function Search() {
   return (
     <>
       <GameFilters onFilterChange={handleFilterChange} initialQuery={query} />
-      <section id="intro" className="container">
-        <h1>Search what you love</h1>
-      </section>
-      <div className="pagination">
-        <button
-          onClick={() => handlePageChange(query.page - 1)}
-          disabled={query.page <= 1}
-        >
-          Previous
-        </button>
-        <span>Page: {query.page}</span>
-        <button onClick={() => handlePageChange(query.page + 1)}>Next</button>
+      <div className="section-wrapper">
+        <section id="intro" className="">
+          <h1>Search what you love</h1>
+        </section>
+        <div className="pagination">
+          <button
+            onClick={() => handlePageChange(query.page - 1)}
+            disabled={query.page <= 1}
+          >
+            Previous
+          </button>
+          <span>Page: {query.page}</span>
+          <button onClick={() => handlePageChange(query.page + 1)}>Next</button>
+        </div>
+        <section id="result" className="">
+          {loading ? (
+            <p>Loading...</p>
+          ) : error ? (
+            <p>Error: {error}</p>
+          ) : games && games.length > 0 ? (
+            <ol id="gameList">
+              {games.map((game) => (
+                <GameCard game={game} key={game.id} />
+              ))}
+            </ol>
+          ) : (
+            <p>No results found.</p>
+          )}
+        </section>
       </div>
-      <section id="result" className="container">
-        {loading ? (
-          <p>Loading...</p>
-        ) : error ? (
-          <p>Error: {error}</p>
-        ) : games && games.length > 0 ? (
-          <ol id="gameList">
-            {games.map((game) => (
-              <GameCard game={game} key={game.id} />
-            ))}
-          </ol>
-        ) : (
-          <p>No results found.</p>
-        )}
-      </section>
     </>
   )
 }

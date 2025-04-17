@@ -52,7 +52,6 @@ const storesOptions = [
 export default function GameFilters({ onFilterChange, initialQuery }) {
   const [query, setQuery] = useState(initialQuery || {
     search: '',
-    metacritic: 0,
     ordering: '-added',
     platforms: [],
     genres: [],
@@ -84,10 +83,6 @@ export default function GameFilters({ onFilterChange, initialQuery }) {
     });
   };
 
-  const handleMetacriticChange = (event) => {
-    setQuery(prevQuery => ({ ...prevQuery, metacritic: parseInt(event.target.value, 10) }));
-  };
-
   const handleOrderingChange = (event) => {
     setQuery(prevQuery => ({ ...prevQuery, ordering: event.target.value }));
   };
@@ -99,7 +94,6 @@ export default function GameFilters({ onFilterChange, initialQuery }) {
   const handleReset = () => {
     const defaultQuery = {
       search: '',
-      metacritic: 0,
       ordering: '-added',
       platforms: [],
       genres: [],
@@ -113,7 +107,7 @@ export default function GameFilters({ onFilterChange, initialQuery }) {
       <h2>Filter Games</h2>
       <form onSubmit={handleSubmit}>
         <div className="filter-group">
-          <label htmlFor="search">Search:</label>
+          <label htmlFor="search">Search</label>
           <input
             type="text"
             id="search"
@@ -125,20 +119,7 @@ export default function GameFilters({ onFilterChange, initialQuery }) {
         </div>
 
         <div className="filter-group">
-          <label htmlFor="metacritic">Metacritic Score (min 0 - max 100): {query.metacritic}</label>
-          <input
-            type="range"
-            id="metacritic"
-            name="metacritic"
-            min="0"
-            max="100"
-            value={query.metacritic}
-            onChange={handleMetacriticChange}
-          />
-        </div>
-
-        <div className="filter-group">
-          <label htmlFor="ordering">Order By:</label>
+          <label htmlFor="ordering">Order By</label>
           <select
             id="ordering"
             name="ordering"
@@ -163,10 +144,10 @@ export default function GameFilters({ onFilterChange, initialQuery }) {
         </div>
 
         <div className="filter-group">
-          <label>Platforms:</label>
+          <label>Platforms</label>
           <div className="checkbox-group">
             {platformsOptions.map(platform => (
-              <label key={platform.id}>
+              <label key={platform.id} className="checkbox-label">
                 <input
                   type="checkbox"
                   name="platforms"
@@ -174,17 +155,17 @@ export default function GameFilters({ onFilterChange, initialQuery }) {
                   checked={query.platforms.includes(platform.id.toString())}
                   onChange={handleChange}
                 />
-                {platform.name}
+                <span>{platform.name}</span>
               </label>
             ))}
           </div>
         </div>
 
         <div className="filter-group">
-          <label>Genres:</label>
+          <label>Genres</label>
           <div className="checkbox-group">
             {genresOptions.map(genre => (
-              <label key={genre.id}>
+              <label key={genre.id} className="checkbox-label">
                 <input
                   type="checkbox"
                   name="genres"
@@ -192,17 +173,17 @@ export default function GameFilters({ onFilterChange, initialQuery }) {
                   checked={query.genres.includes(genre.id.toString())}
                   onChange={handleChange}
                 />
-                {genre.name}
+                <span>{genre.name}</span>
               </label>
             ))}
           </div>
         </div>
 
         <div className="filter-group">
-          <label>Stores:</label>
+          <label>Stores</label>
           <div className="checkbox-group">
             {storesOptions.map(store => (
-              <label key={store.id}>
+              <label key={store.id} className="checkbox-label">
                 <input
                   type="checkbox"
                   name="stores"
@@ -210,7 +191,7 @@ export default function GameFilters({ onFilterChange, initialQuery }) {
                   checked={query.stores.includes(store.id.toString())}
                   onChange={handleChange}
                 />
-                {store.name}
+                <span>{store.name}</span>
               </label>
             ))}
           </div>

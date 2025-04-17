@@ -1,4 +1,5 @@
 main {
+    padding-top: 90px;
     min-height: calc(100vh);
     overflow-x: hidden;
 }
@@ -30,6 +31,21 @@ p {
 img {
     width: 100%;
     height: 100%;
+}
+
+aside {
+    width: 250px;
+    padding: @main-margin 0;
+    box-sizing: border-box;
+    display: inline-block;
+    height: 100%;
+}
+
+.section-wrapper {
+    width: calc(100% - 250px);
+    padding: 0 calc(@main-grid-padding + 50px) 0 calc(@main-grid-padding - 250px + 50px);
+    box-sizing: border-box;
+    display: inline-block;
 }
 
 section {

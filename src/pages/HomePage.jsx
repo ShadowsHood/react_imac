@@ -25,10 +25,10 @@ export default function Home() {
 
   useEffect(() => {
     const body = document.querySelector('body')
-    body.classList.add('home')
+    body.classList.add('home-page')
     fetchGames();
     return () => {
-      body.classList.remove('search');
+      body.classList.remove('home-page');
     };
   }, [fetchGames]);
 

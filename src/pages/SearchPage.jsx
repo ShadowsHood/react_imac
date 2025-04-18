@@ -45,10 +45,10 @@ export default function Search() {
 
   useEffect(() => {
     const body = document.querySelector('body');
-    body.classList.add('search');
+    body.classList.add('search-page');
 
     return () => {
-      body.classList.remove('search');
+      body.classList.remove('search-page');
     };
   }, []);
 

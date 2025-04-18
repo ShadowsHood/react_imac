@@ -1,5 +1,53 @@
-body.game {
+body.game-page {
     .container {
         .centered;
+    }
+
+    .btn {
+        background: none;
+        padding: 10px 15px;
+    }
+
+    #intro {
+        flex-direction: column;
+        padding-top: 50px;
+        padding-bottom: 0;
+
+        h2 {
+            font-family: @special-font;
+            font-weight: normal;
+            font-size: 4rem;
+            color: @primary-color;
+        }
+    }
+
+    #game {
+        padding-top: 15px;
+        padding-bottom: 15px;
+        .centered;
+        flex-direction: column;
+    }
+
+    .timer {
+        margin-top: 5px;
+    }
+
+    form {
+        display: flex;
+        margin-bottom: @main-margin;
+
+        input {
+            border-radius: 50px 0 0 50px;
+        }
+
+        .btn {
+            padding: 5px 10px;
+            margin: 0;
+            border: none;
+            background: @primary-color;
+            color: @background-color;
+            font-weight: 600;
+            border-radius: 0 50px 50px 0;
+        }
     }
 }

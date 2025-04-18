@@ -188,42 +188,44 @@ export default function Game() {
   if (error) return <div>Error: {error}</div>;
 
   return (
-    <div className="container">
-      <h2>PicksHell Game !</h2>
-      <p>This game is based on your favorite games</p>
+    <>
+      <section id="intro" className="container">
+        <h2>PicksHell Game !</h2>
+        <p>This game is based on your favorite games</p>
+      </section>
+      <section id="game" className="container centered">
+        {!loading && gameStatus === 'waiting' && (
+          <button className="btn" onClick={startGame}>Letz a go !</button>
+        )}
 
-      {!loading && gameStatus === 'waiting' && (
-        <button className="btn" onClick={startGame}>Letz a go !</button>
-      )}
-
-      {isPlaying && pixelatedImage && (
-        <div>
-          <img
-            src={pixelatedImage}
-            crossOrigin="anonymous"
-            alt="Capture d'écran pixellisée"
-            style={{ imageRendering: 'pixelated', maxWidth: '400px', height: 'auto' }}
-          />
-          <p>Timer: {timer} s</p>
-          <form onSubmit={handleSubmit}>
-            <input
-              type="text"
-              value={guess}
-              onChange={handleGuessChange}
-              placeholder="Your guess..."
+        {isPlaying && pixelatedImage && (
+          <>
+            <img
+              src={pixelatedImage}
+              crossOrigin="anonymous"
+              alt="Capture d'écran pixellisée"
+              style={{ imageRendering: 'pixelated', maxWidth: '400px', height: 'auto' }}
             />
-            <button className="btn" onClick={checkGuess}>Guess</button>
-          </form>
-          {message && <p>{message}</p>}
-        </div>
-      )}
+            <p className='timer'>Timer: {timer} s</p>
+            <form onSubmit={handleSubmit}>
+              <input
+                type="text"
+                value={guess}
+                onChange={handleGuessChange}
+                placeholder="Your guess..."
+              />
+              <button className="btn" onClick={checkGuess}>Guess</button>
+            </form>
+            {message && <p>{message}</p>}
+          </>
+        )}
 
-      {(gameStatus === 'won' || gameStatus === 'lost') && (
-        <div>
-          <p>{message}</p>
-          <button className="btn" onClick={resetGame}>Replay</button>
-        </div>
-      )}
-    </div>
+        {(gameStatus === 'won' || gameStatus === 'lost') && (
+          <div>
+            <button className="btn" onClick={resetGame}>Replay</button>
+          </div>
+        )}
+      </section>
+    </>
   );
 }

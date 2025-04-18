@@ -90,10 +90,10 @@ export default function Favourite() {
 
   useEffect(() => {
     const body = document.querySelector('body');
-    body.classList.add('favorite');
+    body.classList.add('favorite-page');
 
     return () => {
-      body.classList.remove('favorite');
+      body.classList.remove('favorite-page');
     };
   }, []);
 

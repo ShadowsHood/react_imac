@@ -24,12 +24,12 @@
         }
 
         .gameinfo {
-            padding: @main-margin;
+            padding: 0 @main-margin;
             position: absolute;
             left: 0;
             bottom: 0;
-            width: 90%;
-            height: 45px;
+            width: 100%;
+            height: 6px;
             transition: all ease .3s;
             background: linear-gradient(rgba(32, 32, 32, 0.9), rgba(32, 32, 32, 0.9));
             display: flex;
@@ -57,6 +57,11 @@
                 font-size: 1.1rem;
                 font-weight: 600;
                 letter-spacing: 0.1rem;
+                position: absolute;
+                bottom: 100%;
+                filter: drop-shadow(0px 0px 10px black);
+                left: 0;
+                padding: 10px;
             }
 
             .date {
@@ -94,12 +99,13 @@
             transform: scale(1.05);
 
             .gameinfo {
-                height: 60%;
+                height: 50%;
+                padding: @main-margin;
             }
 
             .gameimg {
                 >img {
-                    filter: blur(2px) contrast(110%) brightness(90%) saturate(50%);
+                    filter: blur(2px) contrast(110%) brightness(80%) saturate(50%);
                 }
             }
         }

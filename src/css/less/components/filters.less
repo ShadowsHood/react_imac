@@ -37,10 +37,6 @@
 
     form {
 
-        label {
-            display: block;
-        }
-
         .filter-actions {
             display: flex;
             justify-content: center;
@@ -92,25 +88,6 @@
             }
         }
 
-        input[type="text"] {
-            width: 100%;
-            padding: 5px 10px;
-            border-radius: 3px;
-            border: 2px solid lighten(@background-color, 10%);
-            background-color: lighten(@background-color, 5%);
-            color: @primary-color;
-            font-family: @main-font;
-            font-size: 0.9rem;
-            box-sizing: border-box;
-            transition: all ease 0.3s;
-
-            &:focus {
-                outline: none;
-                border-color: @primary-color;
-                box-shadow: @primary-color 0px 0px 15px;
-            }
-        }
-
         .checkbox-label {
             display: flex;
             align-items: center;
@@ -134,25 +111,6 @@
                     background-image: radial-gradient(circle at 0%, rgba(255, 0, 43, 1), rgba(255, 0, 43, 0.0) 60%);
                     transition: all ease 0.3s;
                 }
-            }
-        }
-
-        select {
-            width: 100%;
-            padding: 5px 10px;
-            border-radius: 3px;
-            border: 2px solid lighten(@background-color, 10%);
-            background-color: lighten(@background-color, 5%);
-            color: @text-color;
-            font-family: @main-font;
-            font-size: 0.9rem;
-            box-sizing: border-box;
-            transition: all ease 0.3s;
-
-            &:focus {
-                outline: none;
-                border-color: darken(@text-color, 30%);
-                box-shadow: darken(@text-color, 30%) 0px 0px 8px;
             }
         }
     }

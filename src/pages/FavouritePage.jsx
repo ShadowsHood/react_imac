@@ -2,7 +2,6 @@ import { useState, useEffect, useCallback, useMemo } from 'react'
 import { getGameDetails } from '../services/api'
 import GameCard from '../components/GameCard.jsx'
 import GameFilters from '../components/GameFilters';
-import Pagination from '../components/Pagination';
 
 export default function Favourite() {
   const [games, setGames] = useState([]);

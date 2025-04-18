@@ -55,3 +55,18 @@ export async function getGameDetails(id) {
     throw err;
   }
 }
+
+export async function getGameScreenshots(id) {
+  const url = `https://api.rawg.io/api/games/${id}/screenshots?key=${apiKey}`;
+  try {
+    const response = await fetch(url);
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    const result = await response.json();
+    return result;
+  } catch (err) {
+    console.error('API Error:', err);
+    throw err;
+  }
+}

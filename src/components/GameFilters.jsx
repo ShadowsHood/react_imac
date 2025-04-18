@@ -52,29 +52,23 @@ export default function GameFilters({ onFilterChange, initialQuery }) {
     onFilterChange(query);
   }, [query]);
 
-  const handleChange = (event) => {
+  const handleCheckboxChange = (event) => {
     const { name, value, type, checked } = event.target;
 
+    // setQuery(prevQuery => ({ ...prevQuery, [name]: checked ? [...prevQuery[name], value] : prevQuery[name].filter(id => id != value) }));
+    // Plus sécurisé et vérification des types de data (si jamais la checkbox initialisée ne correspond pas a un tableau)
     setQuery(prevQuery => {
-      if (type === 'checkbox') {
-        if (prevQuery[name] && Array.isArray(prevQuery[name])) {
-          return {
-            ...prevQuery,
-            [name]: checked
-              ? [...prevQuery[name], value]
-              : prevQuery[name].filter(item => item !== value),
-          };
-        } else {
-          return { ...prevQuery, [name]: checked };
-        }
+      if (prevQuery[name] && Array.isArray(prevQuery[name])) {
+        return { ...prevQuery, [name]: checked ? [...prevQuery[name], value] : prevQuery[name].filter(item => item !== value) };
       } else {
-        return { ...prevQuery, [name]: value };
+        return { ...prevQuery, [name]: checked };
       }
     });
   };
 
-  const handleOrderingChange = (event) => {
-    setQuery(prevQuery => ({ ...prevQuery, ordering: event.target.value }));
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setQuery(prevQuery => ({ ...prevQuery, [name]: value }));
   };
 
   const handleSubmit = (e) => {
@@ -116,7 +110,7 @@ export default function GameFilters({ onFilterChange, initialQuery }) {
             id="ordering"
             name="ordering"
             value={query.ordering}
-            onChange={handleOrderingChange}
+            onChange={handleChange}
           >
             <option value="-added">Trending</option>
             <option value="name">A-Z</option>
@@ -145,7 +139,7 @@ export default function GameFilters({ onFilterChange, initialQuery }) {
                   name="platforms"
                   value={platform.id.toString()}
                   checked={query.platforms.includes(platform.id.toString())}
-                  onChange={handleChange}
+                  onChange={handleCheckboxChange}
                 />
                 <span>{platform.name}</span>
               </label>
@@ -163,7 +157,7 @@ export default function GameFilters({ onFilterChange, initialQuery }) {
                   name="genres"
                   value={genre.id.toString()}
                   checked={query.genres.includes(genre.id.toString())}
-                  onChange={handleChange}
+                  onChange={handleCheckboxChange}
                 />
                 <span>{genre.name}</span>
               </label>

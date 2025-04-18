@@ -28,24 +28,119 @@
             position: absolute;
             left: 0;
             bottom: 0;
-            width: 100%;
-            // height: 10%;
+            width: 90%;
+            height: 45px;
             transition: all ease .3s;
-            // background: linear-gradient(rgba(32, 32, 32, 0.1), rgba(32, 32, 32, 1));
+            background: linear-gradient(rgba(32, 32, 32, 0.9), rgba(32, 32, 32, 0.9));
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: flex-start;
+            transition: all ease .3s;
+
+            &::after {
+                content: '';
+                position: absolute;
+                top: 0;
+                right: 0;
+                width: 100%;
+                height: 6px;
+                background: @primary-color;
+            }
+
+            >* {
+                width: 100%;
+                padding: 5px 0;
+            }
+
+            .name {
+                font-size: 1.1rem;
+                font-weight: 600;
+                letter-spacing: 0.1rem;
+            }
+
+            .date {
+                color: darken(@text-color, 20%);
+                font-weight: 300;
+                font-style: italic;
+            }
+
+            .genres {
+                display: flex;
+                flex-wrap: wrap;
+                width: 100%;
+
+                span {
+                    margin-right: 3px;
+                    margin-bottom: 3px;
+                    font-size: 0.8rem;
+                    color: darken(@text-color, 20%);
+                    padding: 5px 12px;
+                    border-radius: 50px;
+                    background: rgba(15, 15, 15, 0.8);
+                }
+            }
+
         }
 
-        &:hover {
-            box-shadow: darken(white, 75%) 0px 0px 15px;
-        }
-
-        &:hover .gameimg {
-            >img {
-                filter: blur(2px) contrast(110%);
+        .platforms {
+            span {
+                margin-right: 5px;
             }
         }
 
-        // &:hover .gameinfo {
-        //     height: 30%;
-        // }
+        &:hover {
+            filter: drop-shadow(darken(@primary-color, 80%) 0px 0px 15px);
+            transform: scale(1.05);
+
+            .gameinfo {
+                height: 60%;
+            }
+
+            .gameimg {
+                >img {
+                    filter: blur(2px) contrast(110%) brightness(90%) saturate(50%);
+                }
+            }
+        }
+
+        .favorite {
+            .centered;
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            border-radius: 50%;
+            cursor: pointer;
+
+            >button {
+                background: none;
+                border: none;
+                cursor: pointer;
+                width: 100%;
+                height: 100%;
+                color: darken(@primary-color, 10%);
+
+                &.favorite-btn {
+                    color: darken(@primary-color, 0%);
+                    filter: drop-shadow(0px 0px 15px @primary-color);
+                    transition: all ease .3s;
+                }
+
+                i {
+                    font-size: 2rem;
+                }
+            }
+
+            // >img {
+            //     width: 20px;
+            //     height: 20px;
+            //     filter: invert(100%);
+            //     transition: all ease .3s;
+            // }
+
+            // &:hover>img {
+            //     filter: invert(50%);
+            // }
+        }
     }
 }

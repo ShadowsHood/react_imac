@@ -2,6 +2,7 @@ import { useState, useEffect, useCallback } from 'react'
 import { getGames } from '../services/api'
 import GameCard from '../components/GameCard.jsx'
 import GameFilters from '../components/GameFilters';
+import Pagination from '../components/Pagination';
 
 export default function Search() {
   const [games, setGames] = useState(null);
@@ -16,20 +17,20 @@ export default function Search() {
     search_precise: true,
   });
 
-  const handleFilterChange = (newQuery) => {
+  const handleFilterChange = useCallback((newQuery) => {
     setQuery({ ...newQuery, page: 1 });
     // console.log(newQuery)
-  };
+  });
 
-  const handlePageChange = (newPage) => {
+  const handlePageChange = useCallback((newPage) => {
     setQuery((prevQuery) => ({ ...prevQuery, page: newPage }));
-  };
+  });
 
   const fetchGames = useCallback(async () => {
     setLoading(true);
     setError(null);
     try {
-      const games = await getGames(6, query);
+      const games = await getGames(24, query);
       setGames(games);
       setLoading(false);
     } catch (err) {
@@ -55,26 +56,11 @@ export default function Search() {
     <>
       <GameFilters onFilterChange={handleFilterChange} initialQuery={query} />
       <div className="section-wrapper">
-        <section id="intro" className="">
-          <h1>Search what you love</h1>
+        <section id="intro" className="no-space">
+          <h1>Search your beloved ones</h1>
         </section>
-        <div className="pagination">
-          <button
-            onClick={() => handlePageChange(query.page - 1)}
-            disabled={query.page <= 1}
-          >
-            Previous
-          </button>
-          <input type="number" id="page" name="page" min="1" value={query.page}
-            onChange={(event) => {
-              const newValue = parseInt(event.target.value, 10);
-              if (newValue === '' || isNaN(newValue) || newValue < 1) return;
-              handlePageChange(newValue);
-            }}
-          />
-          <button onClick={() => handlePageChange(query.page + 1)}>Next</button>
-        </div>
-        <section id="result" className="">
+        <Pagination page={query.page} onPageChange={handlePageChange} />
+        <section id="result" className="no-space">
           {loading ? (
             <p>Loading...</p>
           ) : error ? (
@@ -89,6 +75,7 @@ export default function Search() {
             <p>No results found.</p>
           )}
         </section>
+        {loading ? null : <Pagination page={query.page} onPageChange={handlePageChange} />}
       </div>
     </>
   )

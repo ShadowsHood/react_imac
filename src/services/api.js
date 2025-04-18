@@ -24,7 +24,7 @@ function queryToString(query) {
 }
 
 export async function getGames(limit = 10, query = {}) {
-  console.log('Query:', queryToString(query));
+  // console.log('Query:', queryToString(query));
   const url = `https://api.rawg.io/api/games?page_size=${limit}&key=${apiKey}&${queryToString(query)}`;
   // const url = `https://api.rawg.io/api/genres?key=${apiKey}`;
 
@@ -35,6 +35,21 @@ export async function getGames(limit = 10, query = {}) {
     }
     const result = await response.json();
     return result.results;
+  } catch (err) {
+    console.error('API Error:', err);
+    throw err;
+  }
+}
+
+export async function getGameDetails(id) {
+  const url = `https://api.rawg.io/api/games/${id}?key=${apiKey}`;
+  try {
+    const response = await fetch(url);
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    const result = await response.json();
+    return result;
   } catch (err) {
     console.error('API Error:', err);
     throw err;

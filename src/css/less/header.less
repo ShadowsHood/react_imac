@@ -1,7 +1,7 @@
 header {
     // background-image: linear-gradient(rgba(32, 32, 32, .8) 60%, rgba(32, 32, 32, 0) 95%);
     background: @background-color;
-    background: linear-gradient(darken(@background-color, 5%), @background-color);
+    background: linear-gradient(darken(@background-color, 5%), transparent);
     padding: 10px @main-grid-padding;
     position: fixed;
     top: 0;
@@ -19,6 +19,29 @@ header {
                 margin: 0 10px;
                 font-size: large;
                 font-weight: 500;
+
+                .active {
+                    color: @primary-color;
+                    font-weight: 600;
+
+                    &.btn {
+                        background-color: darken(@primary-color, 30%);
+                        animation: flash infinite 1.5s ease-in-out alternate;
+                        box-shadow: @primary-color 0px 0px 15px;
+                    }
+
+                    @keyframes flash {
+                        0% {
+                            box-shadow: @primary-color 0px 0px 15px;
+                            background-color: darken(@primary-color, 30%);
+                        }
+
+                        50% {
+                            box-shadow: darken(@primary-color, 30%) 0px 0px 15px;
+                            background-color: darken(@primary-color, 40%);
+                        }
+                    }
+                }
             }
         }
     }

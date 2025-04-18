@@ -86,6 +86,7 @@ export default function Home() {
         ) : games && games.length > 0 ? (
           <ol id="gameList">
             {games.map((game) => (
+              // <p>id: {game.id}, name: '{game.name}'</p>
               <GameCard game={game} key={game.id} />
             ))}
           </ol>

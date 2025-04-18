@@ -13,7 +13,6 @@ export default function Search() {
     ordering: '-added',
     platforms: [],
     genres: [],
-    stores: [],
     search_precise: true,
   });
 
@@ -66,7 +65,13 @@ export default function Search() {
           >
             Previous
           </button>
-          <span>Page: {query.page}</span>
+          <input type="number" id="page" name="page" min="1" value={query.page}
+            onChange={(event) => {
+              const newValue = parseInt(event.target.value, 10);
+              if (newValue === '' || isNaN(newValue) || newValue < 1) return;
+              handlePageChange(newValue);
+            }}
+          />
           <button onClick={() => handlePageChange(query.page + 1)}>Next</button>
         </div>
         <section id="result" className="">

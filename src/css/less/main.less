@@ -81,6 +81,17 @@ section {
         font-weight: 700;
         color: @background-color;
     }
+
+    &.btn-white {
+        border: 3px darken(@text-color, 40%) solid;
+        color: darken(@text-color, 40%);
+
+        &:hover {
+            border: 3px darken(@text-color, 25%) solid;
+            color: darken(@text-color, 25%);
+            box-shadow: darken(@text-color, 25%) 0px 0px 8px;
+        }
+    }
 }
 
 .links {

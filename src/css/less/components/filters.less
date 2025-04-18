@@ -1,5 +1,29 @@
 #filters {
     // background-color: darken(@background-color, 5%);
+    position: relative;
+    height: fit-content;
+
+    .open-button {
+        display: none;
+        padding: 0 10px;
+        background: darken(@background-color, 10%);
+        font-family: @main-font;
+        font-weight: 600;
+        transition: all ease 0.3s;
+        position: absolute;
+        border: none;
+        border-radius: 0 50px 50px 0;
+        cursor: pointer;
+        top: 0;
+        left: 100%;
+        margin: 0;
+
+        &::after {
+            content: ">";
+            font-size: 2rem;
+            color: @primary-color;
+        }
+    }
 
     h2 {
         font-family: @special-font;

@@ -41,6 +41,7 @@ const genresOptions = [
 ];
 
 export default function GameFilters({ onFilterChange, initialQuery }) {
+  const [isOpen, setIsOpen] = useState(false);
   const [query, setQuery] = useState(initialQuery || {
     search: '',
     ordering: '-added',
@@ -85,10 +86,17 @@ export default function GameFilters({ onFilterChange, initialQuery }) {
     setQuery(defaultQuery);
   };
 
+  const openPannel = () => {
+    const filters = document.querySelector('#filters');
+    filters.classList.toggle('open');
+    setIsOpen(!isOpen);
+  };
+
   return (
     <aside id="filters" className="">
-      <h2>Filter Games</h2>
+      <button className="open-button" onClick={openPannel}></button>
       <form onSubmit={handleSubmit}>
+        <h2>Filter Games</h2>
         <div className="filter-group">
           <label htmlFor="search">Search</label>
           <input

@@ -1,0 +1,129 @@
+@media screen and (max-width: 576px) {
+
+    * {
+        text-align: center;
+    }
+
+    .container {
+        padding: 0 5%;
+    }
+
+    section {
+        &.container {
+            padding: calc(10 * @main-margin) 5%;
+        }
+    }
+
+    aside {
+        width: 100%;
+    }
+
+    .section-wrapper {
+        position: relative;
+        z-index: 1;
+        width: 100%;
+        padding: 0 5%;
+        box-sizing: border-box;
+        display: inline-block;
+
+        section {
+            padding: 0 5%;
+        }
+    }
+
+    header {
+        padding: 10px 5%;
+    }
+
+    body.scrolled header {
+        padding: 5px 5%;
+    }
+
+    #filters {
+        position: absolute;
+        z-index: 10;
+        background: @background-color;
+        top: 0;
+        padding-top: 100px;
+        width: 0%;
+        margin: 0;
+        padding-top: 75px;
+        transition: all ease 0.3s;
+        height: 100vh;
+
+        .open-button {
+            display: block;
+            top: 75px;
+            left: 0;
+            right: auto;
+            transition: all ease 0.3s;
+        }
+
+        h2 {
+            visibility: hidden;
+        }
+
+        form {
+            height: 100%;
+            overflow: hidden;
+        }
+
+        &.open {
+            width: 100%;
+            margin: 0;
+
+            .open-button {
+                top: 75px;
+                right: 0;
+                left: auto;
+                border-radius: 50px 0 0 50px;
+
+                &::after {
+                    content: "<";
+                }
+            }
+
+            h2 {
+                visibility: visible;
+            }
+
+            form {
+                overflow-y: scroll;
+            }
+        }
+
+        form .filter-group {
+            padding: 5px;
+        }
+
+        .checkbox-group {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+
+            .checkbox-label {
+                margin: 0 15px;
+
+                input[type="checkbox"] {
+                    &:checked+span {
+                        background: none;
+                        color: @primary-color;
+                        transition: all ease 0.3s;
+                    }
+                }
+            }
+
+
+
+            label {
+                text-align: center;
+            }
+        }
+    }
+
+    .pagination {
+        justify-content: center;
+    }
+
+}
